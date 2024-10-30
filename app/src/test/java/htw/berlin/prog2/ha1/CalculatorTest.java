@@ -129,6 +129,24 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Should format number with spaces after every 3 digits")
+    void testFormatting() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+
+        String expected = "123 456";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
 
