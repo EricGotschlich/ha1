@@ -15,10 +15,33 @@ public class Calculator {
     private String latestOperation = "";
 
     /**
-     * @return den aktuellen Bildschirminhalt als String
+     * @return den aktuellen Bildschirminhalt als String. Die Anzeige wird so formatiert, dass
+     * nach jeder dritten Ziffer ein Leerzeichen eingefügt wird.
      */
     public String readScreen() {
-        return screen;
+        if (screen.equals("Error")) {
+            return screen;
+        }
+
+        StringBuilder formatted = new StringBuilder();
+
+        int decimalIndex = screen.indexOf(".");
+        String integer = (decimalIndex == -1) ? screen : screen.substring(0, decimalIndex);
+
+        int length = integer.length();
+        for (int i = 0; i < length; i++) {
+            formatted.append(integer.charAt(i));
+
+            if ((i + 1) % 3 == 0 && i != length - 1) {
+                formatted.append(" ");
+            }
+        }
+
+        if (decimalIndex != -1) {
+            formatted.append(screen.substring(decimalIndex));
+        }
+
+        return formatted.toString();
     }
 
     /**
